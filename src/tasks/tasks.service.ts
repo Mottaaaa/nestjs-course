@@ -56,8 +56,8 @@ export class TasksService {
 
     if (search) {
       query.andWhere(
-        'LOWER(task.title) LIKE :search OR LOWER(task.description) LIKE :search',
-        { search: `%${search.toLowerCase()}%` },
+        '(LOWER(task.title) LIKE LOWER(:search) OR LOWER(task.description) LIKE LOWER(:search))',
+        { search: `%${search}%` },
       );
     }
 
